@@ -1,27 +1,309 @@
    //http://www.wiki-oblady.com/index.php/Interface_de_configuration_d%27une_extension_dans_l%27Extension_manager
-   
-    //########### General Mode
-   # cat=General; type=options[htmlawed,tidy,php5tidy,typo3_tidy] ; label= Mode : 	*	htmlawed : see http://code.google.com/p/htmlawed/ 	*	tidy : auto mode for tidy (use php5 tidy if available) 	*	php5tidy : http://php.net/manual/en/ref.tidy.php 	 *	typo3_tidy : Typo3 original tidy function (use file cache)
+//#######################################   
+//########### General Mode
+//#######################################  
+
+   # cat=General Mode; type=options[htmlawed,tidy,php5tidy,typo3_tidy] ; label= Mode : 	*	htmlawed : see http://code.google.com/p/htmlawed/ 	*	tidy : auto mode for tidy (use php5 tidy if available) 	*	php5tidy : http://php.net/manual/en/ref.tidy.php 	 *	typo3_tidy : Typo3 original tidy function (use file cache)
    mode = htmlawed
    
-    # cat=General; type=boolean ; label= Debug
+    # cat=General Mode; type=boolean ; label= Debug :
     debug = 0
-
+//#######################################  
 //http://www.bioinformatics.org/phplabware/internal_utilities/htmLawed/htmLawed_README.htm   
    //########### htmlawed specifics
-      # cat=htmlawed; type=options[no_change,relative,absolute] ; label= absolute/relative URL conversion
+//#######################################  
+
+      # cat=htmLawed; type=options[no_change,relative,absolute] ; label=abs_url : absolute/relative URL conversion
    abs_url = no_change
    
-   # cat=htmlawed; type=boolean ; label= mark original & chars
+   # cat=htmLawed; type=boolean ; label=and_mark : mark original & chars
    and_mark = 0
    
-   # cat=htmlawed; type=options[no_change, 0 - don't consider CDATA sections as markup and proceed as if plain text  ^",1 - remove, 2 - allow but neutralize any < > and & inside by converting them to named entities, 3 - allow  *] ; label= allow CDATA sections
+   # cat=htmLawed; type=options[no_change, 0, 1, 2, 3] ; label= allow CDATA sections [0 - don't consider CDATA sections as markup and proceed as if plain text  ^",1 - remove, 2 - allow but neutralize any < > and & inside by converting them to named entities, 3 - allow  *]
    cdata = no_change
 
+//#######################################  
 //http://tidy.sourceforge.net/docs/quickref.html#hide-comments
-   //########### Tidy specifics
-      # cat=Tidy; type=options[raw, utf8, ascii, latin0, latin1, iso2022, mac, win1252, ibm858, utf16, utf16le, utf16be, big5, shiftjis] ; label= The encoding parameter sets the encoding for input/output documents
+//########### Tidy specifics
+//#######################################  
+
+   # cat=Tidy - General; type=options[raw, utf8, ascii, latin0, latin1, iso2022, mac, win1252, ibm858, utf16, utf16le, utf16be, big5, shiftjis] ; label=encoding : The encoding parameter sets the encoding for input/output documents
    encoding = raw
+   
+   # cat=Tidy - General; type=options[none, default_preset.cfg, xml_preset.cfg] ; label=load-preset : You can load configuration presets for Tidy (see EXT_PATH:/config/). THIS WILL OVERWRITE ALL OTHER PARAMETERS
+   load-preset = none
+   
   
-      # cat=Tidy; type=boolean ; label= This option specifies if Tidy should add the XML declaration when outputting XML or XHTML. Note that if the input already includes an <?xml ... ?> declaration then this option will be ignored. If the encoding for the output is different from "ascii", one of the utf encodings or "raw", the declaration is always added as required by the XML standard. 
-   add-xml-decl = 0 
+// --------------------------------------------------------
+// @@@@@@@@@@@@@@@@@ HTML, XHTML, XML Options Reference 
+  
+    # cat=Tidy - HTML XHTML XML Options; type=boolean ; label=add-xml-decl : This option specifies if Tidy should add the XML declaration when outputting XML or XHTML. Note that if the input already includes an <?xml ... ?> declaration then this option will be ignored. If the encoding for the output is different from "ascii", one of the utf encodings or "raw", the declaration is always added as required by the XML standard. 
+	add-xml-decl = 0 
+   
+    # cat=Tidy - HTML XHTML XML Options; type=boolean ; label=add-xml-space :  This option specifies if Tidy should add xml:space="preserve" to elements such as <PRE>, <STYLE> and <SCRIPT> when generating XML. This is needed if the whitespace in such elements is to be parsed appropriately without having access to the DTD.
+    add-xml-space = 0
+
+    # cat=Tidy - HTML XHTML XML Options; type=text ; label=alt-text : This option specifies the default "alt=" text Tidy uses for <IMG> attributes. This feature is dangerous as it suppresses further accessibility warnings. You are responsible for making your documents accessible to people who can not see the images! 
+    alt-text =  
+
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=anchor-as-name : This option controls the deletion or addition of the name attribute in elements where it can serve as anchor. If set to "yes", a name attribute, if not already existing, is added along an existing id attribute if the DTD allows it. If set to "no", any existing name attribute is removed if an id attribute exists or has been added.
+    anchor-as-name = 1 
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=assume-xml-procins : This option specifies if Tidy should change the parsing of processing instructions to require ?> as the terminator rather than >. This option is automatically set if the input is in XML. 
+    assume-xml-procins = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=bare : This option specifies if Tidy should strip Microsoft specific HTML from Word 2000 documents, and output spaces rather than non-breaking spaces where they exist in the input.
+    bare = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=clean : This option specifies if Tidy should strip out surplus presentational tags and attributes replacing them by style rules and structural markup as appropriate. It works well on the HTML saved by Microsoft Office products.
+    clean = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=text ; label=css-prefix : This option specifies the prefix that Tidy uses for styles rules. By default, "c" will be used. 
+    css-prefix = 
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=decorate-inferred-ul : This option specifies if Tidy should decorate inferred UL elements with some CSS markup to avoid indentation to the right. 
+    decorate-inferred-ul = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=options[auto, omit, strict, transitional, user] ; label=doctype : This option specifies the DOCTYPE declaration generated by Tidy. If set to "omit" the output won't contain a DOCTYPE declaration. If set to "auto" (the default) Tidy will use an educated guess based upon the contents of the document. If set to "strict", Tidy will set the DOCTYPE to the strict DTD. If set to "loose", the DOCTYPE is set to the loose (transitional) DTD. Alternatively, you can supply a string for the formal public identifier (FPI).
+    doctype = auto
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=drop-empty-paras : This option specifies if Tidy should discard empty paragraphs. 
+    drop-empty-paras = 1
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=drop-font-tags : This option specifies if Tidy should discard <FONT> and <CENTER> tags without creating the corresponding style rules. This option can be set independently of the clean option.
+    drop-font-tags = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=drop-proprietary-attributes : This option specifies if Tidy should strip out proprietary attributes, such as MS data binding attributes.
+    drop-proprietary-attributes = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=enclose-block-text : This option specifies if Tidy should insert a <P> element to enclose any text it finds in any element that allows mixed content for HTML transitional but not HTML strict. 
+    enclose-block-text = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=enclose-text : This option specifies if Tidy should enclose any text it finds in the body element within a <P> element. This is useful when you want to take existing HTML and use it with a style sheet. 
+    enclose-text = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=escape-cdata : This option specifies if Tidy should convert <![CDATA[]]> sections to normal text.
+    escape-cdata = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=fix-backslash : This option specifies if Tidy should replace backslash characters "\" in URLs by forward slashes "/". 
+    fix-backslash = 1
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=fix-bad-comments : This option specifies if Tidy should replace unexpected hyphens with "=" characters when it comes across adjacent hyphens. The default is yes. This option is provided for users of Cold Fusion which uses the comment syntax: <!--- ---> 
+    fix-bad-comments = 1
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=fix-uri : This option specifies if Tidy should check attribute values that carry URIs for illegal characters and if such are found, escape them as HTML 4 recommends
+    fix-uri = 1
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=hide-comments : This option specifies if Tidy should print out comments. 
+    hide-comments = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=hide-endtags : This option specifies if Tidy should omit optional end-tags when generating the pretty printed markup. This option is ignored if you are outputting to XML
+    hide-endtags = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=indent-cdata : This option specifies if Tidy should indent <![CDATA[]]> sections. 
+    indent-cdata = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=input-xml : This option specifies if Tidy should use the XML parser rather than the error correcting HTML parser. 
+    input-xml = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=join-classes : This option specifies if Tidy should combine class names to generate a single new class name, if multiple class assignments are detected on an element. 
+    join-classes = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=join-styles : This option specifies if Tidy should combine styles to generate a single new style, if multiple style values are detected on an element. 
+    join-styles = 1
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=literal-attributes : This option specifies if Tidy should ensure that whitespace characters within attribute values are passed through unchanged. 
+    literal-attributes = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=logical-emphasis : This option specifies if Tidy should replace any occurrence of <I> by <EM> and any occurrence of <B> by <STRONG>. In both cases, the attributes are preserved unchanged. This option can be set independently of the clean and drop-font-tags options. 
+    logical-emphasis = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=lower-literals : This option specifies if Tidy should convert the value of an attribute that takes a list of predefined values to lower case. This is required for XHTML documents. 
+    lower-literals = 1
+	
+	# cat=Tidy - HTML XHTML XML Options; type=type=options[auto, yes, no] ; label=merge-divs : Can be used to modify behavior of -c (--clean yes) option. This option specifies if Tidy should merge nested <div> such as "<div><div>...</div></div>". If set to "auto", the attributes of the inner <div> are moved to the outer one. As well, nested <div> with ID attributes are not merged. If set to "yes", the attributes of the inner <div> are discarded with the exception of "class" and "style".
+    merge-divs = auto
+	
+	# cat=Tidy - HTML XHTML XML Options; type=type=options[auto, yes, no] ; label=merge-spans : Can be used to modify behavior of -c (--clean yes) option. This option specifies if Tidy should merge nested <span> such as "<span><span>...</span></span>". The algorithm is identical to the one used by --merge-divs. 
+    merge-spans = auto
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=ncr : This option specifies if Tidy should allow numeric character references. 
+    ncr = 1
+	
+	# cat=Tidy - HTML XHTML XML Options; type=text ; label=new-blocklevel-tags : This option specifies new block-level tags. This option takes a space or comma separated list of tag names. Unless you declare new tags, Tidy will refuse to generate a tidied file if the input includes previously unknown tags. Note you can't change the content model for elements such as <TABLE>, <UL>, <OL> and <DL>. This option is ignored in XML mode. 
+    new-blocklevel-tags = 
+	
+	# cat=Tidy - HTML XHTML XML Options; type=text ; label=new-empty-tags : This option specifies new empty inline tags. This option takes a space or comma separated list of tag names. Unless you declare new tags, Tidy will refuse to generate a tidied file if the input includes previously unknown tags. Remember to also declare empty tags as either inline or blocklevel. This option is ignored in XML mode. 
+    new-empty-tags = 
+	
+	# cat=Tidy - HTML XHTML XML Options; type=text ; label=new-inline-tags : This option specifies new non-empty inline tags. This option takes a space or comma separated list of tag names. Unless you declare new tags, Tidy will refuse to generate a tidied file if the input includes previously unknown tags. This option is ignored in XML mode. 
+    new-inline-tags = 
+	
+	# cat=Tidy - HTML XHTML XML Options; type=text ; label=new-pre-tags : This option specifies new tags that are to be processed in exactly the same way as HTML's <PRE> element. This option takes a space or comma separated list of tag names. Unless you declare new tags, Tidy will refuse to generate a tidied file if the input includes previously unknown tags. Note you can not as yet add new CDATA elements (similar to <SCRIPT>). This option is ignored in XML mode. 
+    new-pre-tags = 
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=numeric-entities : This option specifies if Tidy should output entities other than the built-in HTML entities (&amp;, &lt;, &gt; and &quot;) in the numeric rather than the named entity form. Only entities compatible with the DOCTYPE declaration generated are used. Entities that can be represented in the output encoding are translated correspondingly. 
+    numeric-entities = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=output-html : This option specifies if Tidy should generate pretty printed output, writing it as HTML. 
+    output-html = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=output-xhtml : This option specifies if Tidy should generate pretty printed output, writing it as extensible HTML. This option causes Tidy to set the DOCTYPE and default namespace as appropriate to XHTML. If a DOCTYPE or namespace is given they will checked for consistency with the content of the document. In the case of an inconsistency, the corrected values will appear in the output. For XHTML, entities can be written as named or numeric entities according to the setting of the "numeric-entities" option. The original case of tags and attributes will be preserved, regardless of other options. 
+    output-xhtml = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=output-xml : This option specifies if Tidy should pretty print output, writing it as well-formed XML. Any entities not defined in XML 1.0 will be written as numeric entities to allow them to be parsed by a XML parser. The original case of tags and attributes will be preserved, regardless of other options
+    output-xml = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=preserve-entities : This option specifies if Tidy should preserve the well-formed entitites as found in the input.
+    preserve-entities = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=quote-ampersand : This option specifies if Tidy should output unadorned & characters as &amp;. 
+    quote-ampersand = 1
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=quote-marks : This option specifies if Tidy should output " characters as &quot; as is preferred by some editing environments. The apostrophe character ' is written out as &#39; since many web browsers don't yet support &apos;.
+    quote-marks = 0
+
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=quote-nbsp : This option specifies if Tidy should output non-breaking space characters as entities, rather than as the Unicode character value 160 (decimal). 
+    quote-nbsp = 1
+	
+	# cat=Tidy - HTML XHTML XML Options; type=options[keep-last, keep-first]; label=repeated-attributes : This option specifies if Tidy should keep the first or last attribute, if an attribute is repeated, e.g. has two align attributes
+    repeated-attributes = keep-last
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=replace-color : This option specifies if Tidy should replace numeric values in color attributes by HTML/XHTML color names where defined, e.g. replace "#ffffff" with "white".
+    replace-color = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=options[auto, yes, no] ; label=show-body-only : This option specifies if Tidy should print only the contents of the body tag as an HTML fragment. If set to "auto", this is performed only if the body tag has been inferred. Useful for incorporating existing whole pages as a portion of another page. This option has no effect if XML output is requested. 
+    show-body-only = auto
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=uppercase-attributes : This option specifies if Tidy should output attribute names in upper case. The default is no, which results in lower case attribute names, except for XML input, where the original case is preserved. 
+    uppercase-attributes = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=uppercase-tags : This option specifies if Tidy should output tag names in upper case. The default is no, which results in lower case tag names, except for XML input, where the original case is preserved. 
+    uppercase-tags = 0
+	
+	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=word-2000 : This option specifies if Tidy should go to great pains to strip out all the surplus stuff Microsoft Word 2000 inserts when you save Word documents as "Web pages". Doesn't handle embedded images or VML. You should consider using Word's "Save As: Web Page, Filtered". 
+    word-2000 = 0
+// --------------------------------------------------------	
+// @@@@@@@@@@@@@@@@@@@@ Diagnostics Options Reference 
+
+	# cat=Tidy - Diagnostics Options; type=options[0, 1, 2, 3] ; label=accessibility-check : [0 (Tidy Classic), 1 (Priority 1 Checks), 2 (Priority 2 Checks), 3 (Priority 3 Checks)]This option specifies what level of accessibility checking, if any, that Tidy should do. Level 0 is equivalent to Tidy Classic's accessibility checking. For more information on Tidy's accessibility checking, visit the Adaptive Technology Resource Centre at the University of Toronto. 
+    accessibility-check = 0
+	
+	# cat=Tidy - Diagnostics Options; type=int; label=show-errors : This option specifies the number Tidy uses to determine if further errors should be shown. If set to 0, then no errors are shown. 
+    show-errors = 6
+	
+	# cat=Tidy - Diagnostics Options; type=boolean ; label=show-warnings : This option specifies if Tidy should suppress warnings. This can be useful when a few errors are hidden in a flurry of warnings.
+    show-warnings = 1
+
+// --------------------------------------------------------	
+// @@@@@@@@@@@@@@@@@@@@ Pretty Print Options Reference 
+
+	
+	# cat=Tidy - Pretty Print Options; type=boolean ; label=break-before-br : This option specifies if Tidy should output a line break before each <BR> element. 
+    break-before-br = 0
+	
+	# cat=Tidy - Pretty Print Options; type=options[auto, yes, no] ; label=indent  : This option specifies if Tidy should indent block-level tags. If set to "auto", this option causes Tidy to decide whether or not to indent the content of tags such as TITLE, H1-H6, LI, TD, TD, or P depending on whether or not the content includes a block-level element. You are advised to avoid setting indent to yes as this can expose layout bugs in some browsers. 
+    indent = auto
+	
+	# cat=Tidy - Pretty Print Options; type=boolean ; label=indent-attributes : This option specifies if Tidy should begin each attribute on a new line. 
+	indent-attributes = 0
+	
+	# cat=Tidy - Pretty Print Options; type=int; label=indent-spaces : This option specifies the number of spaces Tidy uses to indent content, when indentation is enabled. 
+    indent-spaces = 2
+	
+	# cat=Tidy - Pretty Print Options; type=boolean ; label=markup : This option specifies if Tidy should generate a pretty printed version of the markup. Note that Tidy won't generate a pretty printed version if it finds significant errors (see force-output). 
+    markup = 1
+	
+	# cat=Tidy - Pretty Print Options; type=boolean ; label=punctuation-wrap : This option specifies if Tidy should line wrap after some Unicode or Chinese punctuation characters.
+    punctuation-wrap = 0
+	
+	# cat=Tidy - Pretty Print Options; type=options[none, alpha] ; label=sort-attributes : This option specifies that tidy should sort attributes within an element using the specified sort algorithm. If set to "alpha", the algorithm is an ascending alphabetic sort. 
+    sort-attributes = none
+	
+	# cat=Tidy - Pretty Print Options; type=boolean ; label=split : Currently not used. Tidy Classic only.
+    split = 0
+	
+	# cat=Tidy - Pretty Print Options; type=int ; label=tab-size : This option specifies the number of columns that Tidy uses between successive tab stops. It is used to map tabs to spaces when reading the input. Tidy never outputs tabs. 
+    tab-size = 8
+	
+	# cat=Tidy - Pretty Print Options; type=boolean ; label=vertical-space : This option specifies if Tidy should add some empty lines for readability. 
+    vertical-space = 0
+	
+	# cat=Tidy - Pretty Print Options; type=int ; label=wrap : [0 = no wrapping)[This option specifies the right margin Tidy uses for line wrapping. Tidy tries to wrap lines so that they do not exceed this length. Set wrap to zero if you want to disable line wrapping. 
+    wrap = 68
+	
+	# cat=Tidy - Pretty Print Options; type=boolean ; label=wrap-asp : This option specifies if Tidy should line wrap text contained within ASP pseudo elements, which look like: <% ... %>. 
+    wrap-asp = 1
+	
+	# cat=Tidy - Pretty Print Options; type=boolean ; label=wrap-attributes : This option specifies if Tidy should line wrap attribute values, for easier editing. This option can be set independently of wrap-script-literals.
+    wrap-attributes = 0
+	
+	# cat=Tidy - Pretty Print Options; type=boolean ; label=wrap-jste : This option specifies if Tidy should line wrap text contained within JSTE pseudo elements, which look like: <# ... #>. 
+    wrap-jste = 1
+	
+	# cat=Tidy - Pretty Print Options; type=boolean ; label=wrap-php : This option specifies if Tidy should line wrap text contained within PHP pseudo elements, which look like: <?php ... ?>. 
+    wrap-php = 1
+	
+	# cat=Tidy - Pretty Print Options; type=boolean ; label=wrap-script-literals : This option specifies if Tidy should line wrap string literals that appear in script attributes. Tidy wraps long script string literals by inserting a backslash character before the line break.
+    wrap-script-literals = 0
+	
+	# cat=Tidy - Pretty Print Options; type=boolean ; label=wrap-sections : This option specifies if Tidy should line wrap text contained within <![ ... ]> section tags. 
+    wrap-sections = 1
+
+// --------------------------------------------------------	
+// @@@@@@@@@@@@@@@@@@@@ Character Encoding Options Reference 	
+	
+	# cat=Tidy - Character Encoding Options; type=boolean ; label=ascii-chars : Can be used to modify behavior of -c (--clean yes) option. If set to "yes" when using -c, &emdash;, &rdquo;, and other named character entities are downgraded to their closest ascii equivalents. 
+    ascii-chars = 0
+	
+	# cat=Tidy - Character Encoding Options; type=options[utf8, ascii, raw, latin0, latin1, iso2022, mac, win1252, ibm858, utf16, utf16le, utf16be, big5, shiftjis] ; label=char-encoding : This option specifies the character encoding Tidy uses for both the input and output. For ascii, Tidy will accept Latin-1 (ISO-8859-1) character values, but will use entities for all characters whose value > 127. For raw, Tidy will output values above 127 without translating them into entities. For latin1, characters above 255 will be written as entities. For utf8, Tidy assumes that both input and output is encoded as UTF-8. You can use iso2022 for files encoded using the ISO-2022 family of encodings e.g. ISO-2022-JP. For mac and win1252, Tidy will accept vendor specific character values, but will use entities for all characters whose value > 127. For unsupported encodings, use an external utility to convert to and from UTF-8. 
+   char-encoding = ascii
+   
+	# cat=Tidy - Character Encoding Options; type=options[utf8, ascii, raw, latin0, latin1, iso2022, mac, win1252, ibm858, utf16, utf16le, utf16be, big5, shiftjis] ; label=input-encoding : This option specifies the character encoding Tidy uses for the input. See char-encoding for more info.
+   input-encoding = latin1
+	
+	# cat=Tidy - Character Encoding Options; type=text ; label=language : Currently not used, but this option specifies the language Tidy uses (for instance "en"). 
+    language = 0
+	
+	# cat=Tidy - Character Encoding Options; type=options[LF, CRLF, CR] ; label=newline : The default is appropriate to the current platform: CRLF on PC-DOS, MS-Windows and OS/2, CR on Classic Mac OS, and LF everywhere else (Unix and Linux). 
+    newline = LF
+	
+	# cat=Tidy - Character Encoding Options; type=options[auto, yes, no] ; label=output-bom : This option specifies if Tidy should write a Unicode Byte Order Mark character (BOM; also known as Zero Width No-Break Space; has value of U+FEFF) to the beginning of the output; only for UTF-8 and UTF-16 output encodings. If set to "auto", this option causes Tidy to write a BOM to the output only if a BOM was present at the beginning of the input. A BOM is always written for XML/XHTML output using UTF-16 output encodings. 
+    output-bom = auto
+	
+	# cat=Tidy - Character Encoding Options; type=options[utf8, ascii, raw, latin0, latin1, iso2022, mac, win1252, ibm858, utf16, utf16le, utf16be, big5, shiftjis] ; label=output-encoding : This option specifies the character encoding Tidy uses for the output. See char-encoding for more info. May only be different from input-encoding for Latin encodings (ascii, latin0, latin1, mac, win1252, ibm858).
+   output-encoding = ascii
+   
+// --------------------------------------------------------	
+// @@@@@@@@@@@@@@@@@@@@ Miscellaneous Options Reference    
+   
+	
+	# cat=Tidy - Miscellaneous Options; type=text ; label=error-file :  This option specifies the error file Tidy uses for errors and warnings. Normally errors and warnings are output to "stderr". 
+    error-file = 
+	
+	# cat=Tidy - Miscellaneous Options; type=boolean ; label=force-output : This option specifies if Tidy should produce output even if errors are encountered. Use this option with care - if Tidy reports an error, this means Tidy was not able to, or is not sure how to, fix the error, so the resulting output may not reflect your intention. 
+    force-output = 0
+	
+	# cat=Tidy - Miscellaneous Options; type=boolean ; label=gnu-emacs : This option specifies if Tidy should change the format for reporting errors and warnings to a format that is more easily parsed by GNU Emacs. 
+    gnu-emacs = 0
+	
+	# cat=Tidy - Miscellaneous Options; type=text ; label=gnu-emacs-file : Used internally. 
+    gnu-emacs-file = 
+	
+	# cat=Tidy - Miscellaneous Options; type=boolean ; label=keep-time : This option specifies if Tidy should keep the original modification time of files that Tidy modifies in place. The default is no. Setting the option to yes allows you to tidy files without causing these files to be uploaded to a web server when using a tool such as SiteCopy. Note this feature is not supported on some platforms.
+     keep-time = 0
+	
+	# cat=Tidy - Miscellaneous Options; type=text ; label=output-file : This option specifies the output file Tidy uses for markup. Normally markup is written to "stdout".  
+    output-file = 
+	
+	# cat=Tidy - Miscellaneous Options; type=boolean ; label=quiet : This option specifies if Tidy should output the summary of the numbers of errors and warnings, or the welcome or informational messages. 
+    quiet = 0
+	
+	# cat=Tidy - Miscellaneous Options; type=text ; label=slide-style : Currently not used. Tidy Classic only. 
+    slide-style = 
+	
+	# cat=Tidy - Miscellaneous Options; type=boolean ; label=tidy-mark : This option specifies if Tidy should add a meta element to the document head to indicate that the document has been tidied. Tidy won't add a meta element if one is already present.
+    tidy-mark = 1
+	
+	# cat=Tidy - Miscellaneous Options; type=boolean ; label=write-back : This option specifies if Tidy should write back the tidied markup to the same file it read from. You are advised to keep copies of important files before tidying them, as on rare occasions the result may not be what you expect. 
+    write-back = 0
