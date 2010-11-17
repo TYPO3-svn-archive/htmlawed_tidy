@@ -14,8 +14,8 @@
 //########### htmlawed specifics
 //#######################################  
 
-   # cat=htmLawed - Options; type=options[none, default_preset.cfg, xml_preset.cfg] ; label=load-preset : You can load configuration presets for Htmlawed (see EXT_PATH:/config/). THIS WILL OVERWRITE ALL OTHER PARAMETERS
-   load-preset = none
+   # cat=htmLawed - Options; type=options[none, default] ; label=load-preset : You can load configuration presets for Htmlawed. THIS WILL OVERWRITE ALL OTHER PARAMETERS
+   load-preset = default
 
    # cat=htmLawed - Options; type=options[no_change,relative,absolute] ; label=abs_url : absolute/relative URL conversion
    abs_url = no_change
@@ -118,7 +118,7 @@
    # cat=Tidy - General; type=options[raw, utf8, ascii, latin0, latin1, iso2022, mac, win1252, ibm858, utf16, utf16le, utf16be, big5, shiftjis] ; label=encoding : The encoding parameter sets the encoding for input/output documents
    encoding = raw
    
-   # cat=Tidy - General; type=options[none, default_preset.cfg, xml_preset.cfg] ; label=load-preset : You can load configuration presets for Tidy (see EXT_PATH:/config/). THIS WILL OVERWRITE ALL OTHER PARAMETERS
+   # cat=Tidy - General; type=options[none, tidy_default_preset.cfg, tidy_xml_preset.cfg] ; label=load-preset : You can load configuration presets for Tidy (see EXT_PATH:/config/). THIS WILL OVERWRITE ALL OTHER PARAMETERS
    load-preset = none
    
   
