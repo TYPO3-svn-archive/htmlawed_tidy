@@ -14,7 +14,7 @@
 //########### htmlawed specifics
 //#######################################  
 
-   # cat=htmLawed - Options; type=options[none, htmlawed_default_preset.cfg] ; label=load-preset : You can load configuration presets for Htmlawed. THIS WILL OVERWRITE ALL OTHER PARAMETERS
+   # cat=htmLawed - Options; type=options[none,htmlawed_default_preset.cfg] ; label=htmlawed_preset : You can load configuration presets for Htmlawed. THIS WILL OVERWRITE ALL OTHER PARAMETERS
    htmlawed_preset = none
 
    # cat=htmLawed - Options; type=options[no_change,relative,absolute] ; label=abs_url : absolute/relative URL conversion
@@ -23,7 +23,7 @@
    # cat=htmLawed - Options; type=boolean ; label=and_mark : Valid character entities take the form &*; where * is #x followed by a hexadecimal number (hexadecimal numeric entity; like &#xA0; for non-breaking space), or alphanumeric like gt (external or named entity; like &nbsp; for non-breaking space), or # followed by a number (decimal numeric entity; like &#160; for non-breaking space). Character entities referring to the soft-hyphen character (the &shy; or \xad character; hexadecimal code-point ad [decimal 173]) in URL-accepting attribute values are always replaced with spaces   and_mark = 0
    HlOpt_and_mark = 0
    
-   # cat=htmLawed - Options; type=options[no_change, 0, 1, 2, 3] ; label=cdata : allow CDATA sections [0 - don't consider CDATA sections as markup and proceed as if plain text  ^",1 - remove, 2 - allow but neutralize any < > and & inside by converting them to named entities, 3 - allow  *]
+   # cat=htmLawed - Options; type=options[no_change,0,1,2,3] ; label=cdata : allow CDATA sections [0 - don't consider CDATA sections as markup and proceed as if plain text  ^",1 - remove, 2 - allow but neutralize any < > and & inside by converting them to named entities, 3 - allow  *]
    HlOpt_cdata = no_change
    
    # cat=htmLawed - Options; type=text ; label=anti_link_spam : [0 = no measure taken] Example : array("/./", "/://\W*(?!(abc\.com|xyz\.org))/")
@@ -38,13 +38,13 @@
    # cat=htmLawed - Options; type=text ; label=base_url : Base URL value that needs to be set if ["abs_url"] is not 0
    HlOpt_base_url = 0
    
-   # cat=htmLawed - Options; type=options[0, 1, 2, 3]; label=cdata : Handling of CDATA sections :   0 - don't consider CDATA sections as markup and proceed as if plain text  ^"  , 1 - remove ,  2 - allow, but neutralize any <, >, and & inside by converting them to named entities,  3 - allow  *
+   # cat=htmLawed - Options; type=options[0,1,2,3]; label=cdata : Handling of CDATA sections :   0 - don't consider CDATA sections as markup and proceed as if plain text  ^"  , 1 - remove ,  2 - allow, but neutralize any <, >, and & inside by converting them to named entities,  3 - allow  *
    HlOpt_cdata = 3 
    
-   # cat=htmLawed - Options; type=options[0, 1, 2]; label=clean_ms_char : Replace discouraged characters introduced by Microsoft Word, etc   0 - no  *,  1 - yes,  2 - yes, but replace special single & double quotes with ordinary ones
+   # cat=htmLawed - Options; type=options[0,1,2]; label=clean_ms_char : Replace discouraged characters introduced by Microsoft Word, etc   0 - no  *,  1 - yes,  2 - yes, but replace special single & double quotes with ordinary ones
    HlOpt_clean_ms_char = 0
    
-   # cat=htmLawed - Options; type=options[0, 1, 2, 3]; label=comment :   0 - don't consider comments as markup and proceed as if plain text  ^",  1 - remove,  2 - allow, but neutralize any <, >, and & inside by converting to named entities,  3 - allow  *
+   # cat=htmLawed - Options; type=options[0,1,2,3]; label=comment :   0 - don't consider comments as markup and proceed as if plain text  ^",  1 - remove,  2 - allow, but neutralize any <, >, and & inside by converting to named entities,  3 - allow  *
    HlOpt_comment = 3 
    
    # cat=htmLawed - Options; type=boolean ; label=css_expression : Allow dynamic CSS expression by not removing the expression from CSS property values in style attributes [ 0 = remove , 1 =allow]
@@ -56,7 +56,7 @@
    # cat=htmLawed - Options; type=text ; label=elements : Allowed HTML elements : * -center -dir -font -isindex -menu -s -strike -u -  ~  applet, embed, iframe, object, script not allowed - "
    HlOpt_elements = *
    
-   # cat=htmLawed - Options; type=options[0, 1, 2, 3]; label=hexdec_entity : Allow hexadecimal numeric entities and do not convert to the more widely accepted decimal ones, or convert decimal to hexadecimal ones : [0 = no, 1 = yes, 2 = convert decimal to hexadecimal ones]
+   # cat=htmLawed - Options; type=options[0,1,2,3]; label=hexdec_entity : Allow hexadecimal numeric entities and do not convert to the more widely accepted decimal ones, or convert decimal to hexadecimal ones : [0 = no, 1 = yes, 2 = convert decimal to hexadecimal ones]
    HlOpt_hexdec_entity = 1
    
    # cat=htmLawed - Options; type=text; label=hook : Name of an optional hook function to alter the input string, $config or $spec before htmLawed starts its main work (kses_hook  ^)
@@ -65,19 +65,19 @@
    # cat=htmLawed - Options; type=text; label=hook_tag : Name of an optional hook function to alter tag content finalized by htmLawed
    HlOpt_hook_tag= 0 
    
-   # cat=htmLawed - Options; type=options[0, 1, 2, 3, 4, 5, 6]; label=keep_bad : Neutralize bad tags by converting < and > to entities, or remove them : [0 - remove, 1 - neutralize both tags and element content ,2 - remove tags but neutralize element content, 3 and 4 - like 1 and 2 but remove if text (pcdata) is invalid in parent element, 5 and 6 * -  like 3 and 4 but line-breaks, tabs and spaces are left]
+   # cat=htmLawed - Options; type=options[0,1,2,3,4,5,6]; label=keep_bad : Neutralize bad tags by converting < and > to entities, or remove them : [0 - remove, 1 - neutralize both tags and element content ,2 - remove tags but neutralize element content, 3 and 4 - like 1 and 2 but remove if text (pcdata) is invalid in parent element, 5 and 6 * -  like 3 and 4 but line-breaks, tabs and spaces are left]
    HlOpt_keep_bad = 6
    
    # cat=htmLawed - Options; type=boolean; label=lc_std_val : For XHTML compliance, predefined, standard attribute values, like get for the method attribute of form, must be lowercased
    HlOpt_lc_std_val = 1
    
-   # cat=htmLawed - Options; type=options[0, 1, 2]; label=make_tag_strict : Transform/remove these non-strict XHTML elements, even if they are allowed by the admin: applet center dir embed font isindex menu s strike u : [0 - no, 1 - yes, but leave applet, embed and isindex elements that currently can't be transformed,  2 - yes, removing applet, embed and isindex elements and their contents (nested elements remain)]
+   # cat=htmLawed - Options; type=options[0,1,2]; label=make_tag_strict : Transform/remove these non-strict XHTML elements, even if they are allowed by the admin: applet center dir embed font isindex menu s strike u : [0 - no, 1 - yes, but leave applet, embed and isindex elements that currently can't be transformed,  2 - yes, removing applet, embed and isindex elements and their contents (nested elements remain)]
    HlOpt_make_tag_strict = 1
    
    # cat=htmLawed - Options; type=boolean; label=named_entity : Allow non-universal named HTML entities, or convert to numeric ones : [0 - convert, 1 - allow  *]
    HlOpt_named_entity = 1
    
-   # cat=htmLawed - Options; type=options[0, 1, 2]; label=no_deprecated_attr : Allow deprecated attributes or transform them [  0 - allow,  1 - transform, but name attributes for a and map are retained ,  2 - transform]
+   # cat=htmLawed - Options; type=options[0,1,2]; label=no_deprecated_attr : Allow deprecated attributes or transform them [  0 - allow,  1 - transform, but name attributes for a and map are retained ,  2 - transform]
    HlOpt_no_deprecated_attr = 1
    
    # cat=htmLawed - Options; type=text; label=parent : Name of the parent element, possibly imagined, that will hold the input
@@ -104,7 +104,7 @@
    # cat=htmLawed - Options; type=boolean; label=valid_xhtml : Magic parameter to make input the most valid XHTML without needing to specify other relevant
    HlOpt_valid_xhtml = 0
    
-   # cat=htmLawed - Options; type=options[0, 1, 2]; label=xml_lang : Auto-adding xml:lang attribute [0 - no  *,  1 - add if lang attribute is present,  2 - add if lang attribute is present, and remove lang]
+   # cat=htmLawed - Options; type=options[0,1,2]; label=xml_lang : Auto-adding xml:lang attribute [0 - no  *,  1 - add if lang attribute is present,  2 - add if lang attribute is present, and remove lang]
    HlOpt_xml:lang = 0
    
    
@@ -113,10 +113,10 @@
 //########### Tidy specifics
 //#######################################  
 
-   # cat=Tidy - General; type=options[raw, utf8, ascii, latin0, latin1, iso2022, mac, win1252, ibm858, utf16, utf16le, utf16be, big5, shiftjis] ; label=encoding : The encoding parameter sets the encoding for input/output documents
+   # cat=Tidy - General; type=options[raw,utf8,ascii,latin0,latin1,iso2022,mac,win1252,ibm858,utf16,utf16le,utf16be,big5,shiftjis] ; label=encoding : The encoding parameter sets the encoding for input/output documents
    encoding = raw
    
-   # cat=Tidy - General; type=options[none, tidy_default_preset.cfg, tidy_xml_preset.cfg] ; label=load-preset : You can load configuration presets for Tidy (see EXT_PATH:/config/). THIS WILL OVERWRITE ALL OTHER PARAMETERS
+   # cat=Tidy - General; type=options[none,tidy_default_preset.cfg,tidy_xml_preset.cfg] ; label=tidy_preset : You can load configuration presets for Tidy (see EXT_PATH:/config/). THIS WILL OVERWRITE ALL OTHER PARAMETERS
    tidy_preset = none
    
   
@@ -150,7 +150,7 @@
 	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=decorate-inferred-ul : This option specifies if Tidy should decorate inferred UL elements with some CSS markup to avoid indentation to the right. 
     TdOpt_decorate-inferred-ul = 0
 	
-	# cat=Tidy - HTML XHTML XML Options; type=options[auto, omit, strict, transitional, user] ; label=doctype : This option specifies the DOCTYPE declaration generated by Tidy. If set to "omit" the output won't contain a DOCTYPE declaration. If set to "auto" (the default) Tidy will use an educated guess based upon the contents of the document. If set to "strict", Tidy will set the DOCTYPE to the strict DTD. If set to "loose", the DOCTYPE is set to the loose (transitional) DTD. Alternatively, you can supply a string for the formal public identifier (FPI).
+	# cat=Tidy - HTML XHTML XML Options; type=options[auto,omit,strict,transitional,user] ; label=doctype : This option specifies the DOCTYPE declaration generated by Tidy. If set to "omit" the output won't contain a DOCTYPE declaration. If set to "auto" (the default) Tidy will use an educated guess based upon the contents of the document. If set to "strict", Tidy will set the DOCTYPE to the strict DTD. If set to "loose", the DOCTYPE is set to the loose (transitional) DTD. Alternatively, you can supply a string for the formal public identifier (FPI).
     TdOpt_doctype = auto
 	
 	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=drop-empty-paras : This option specifies if Tidy should discard empty paragraphs. 
@@ -207,10 +207,10 @@
 	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=lower-literals : This option specifies if Tidy should convert the value of an attribute that takes a list of predefined values to lower case. This is required for XHTML documents. 
     TdOpt_lower-literals = 1
 	
-	# cat=Tidy - HTML XHTML XML Options; type=type=options[auto, yes, no] ; label=merge-divs : Can be used to modify behavior of -c (--clean yes) option. This option specifies if Tidy should merge nested <div> such as "<div><div>...</div></div>". If set to "auto", the attributes of the inner <div> are moved to the outer one. As well, nested <div> with ID attributes are not merged. If set to "yes", the attributes of the inner <div> are discarded with the exception of "class" and "style".
+	# cat=Tidy - HTML XHTML XML Options; type=type=options[auto,yes,no] ; label=merge-divs : Can be used to modify behavior of -c (--clean yes) option. This option specifies if Tidy should merge nested <div> such as "<div><div>...</div></div>". If set to "auto", the attributes of the inner <div> are moved to the outer one. As well, nested <div> with ID attributes are not merged. If set to "yes", the attributes of the inner <div> are discarded with the exception of "class" and "style".
     TdOpt_merge-divs = auto
 	
-	# cat=Tidy - HTML XHTML XML Options; type=type=options[auto, yes, no] ; label=merge-spans : Can be used to modify behavior of -c (--clean yes) option. This option specifies if Tidy should merge nested <span> such as "<span><span>...</span></span>". The algorithm is identical to the one used by --merge-divs. 
+	# cat=Tidy - HTML XHTML XML Options; type=type=options[auto,yes,no] ; label=merge-spans : Can be used to modify behavior of -c (--clean yes) option. This option specifies if Tidy should merge nested <span> such as "<span><span>...</span></span>". The algorithm is identical to the one used by --merge-divs. 
     TdOpt_merge-spans = auto
 	
 	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=ncr : This option specifies if Tidy should allow numeric character references. 
@@ -252,13 +252,13 @@
 	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=quote-nbsp : This option specifies if Tidy should output non-breaking space characters as entities, rather than as the Unicode character value 160 (decimal). 
     TdOpt_quote-nbsp = 1
 	
-	# cat=Tidy - HTML XHTML XML Options; type=options[keep-last, keep-first]; label=repeated-attributes : This option specifies if Tidy should keep the first or last attribute, if an attribute is repeated, e.g. has two align attributes
+	# cat=Tidy - HTML XHTML XML Options; type=options[keep-last,keep-first]; label=repeated-attributes : This option specifies if Tidy should keep the first or last attribute, if an attribute is repeated, e.g. has two align attributes
     TdOpt_repeated-attributes = keep-last
 	
 	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=replace-color : This option specifies if Tidy should replace numeric values in color attributes by HTML/XHTML color names where defined, e.g. replace "#ffffff" with "white".
     TdOpt_replace-color = 0
 	
-	# cat=Tidy - HTML XHTML XML Options; type=options[auto, yes, no] ; label=show-body-only : This option specifies if Tidy should print only the contents of the body tag as an HTML fragment. If set to "auto", this is performed only if the body tag has been inferred. Useful for incorporating existing whole pages as a portion of another page. This option has no effect if XML output is requested. 
+	# cat=Tidy - HTML XHTML XML Options; type=options[auto,yes,no] ; label=show-body-only : This option specifies if Tidy should print only the contents of the body tag as an HTML fragment. If set to "auto", this is performed only if the body tag has been inferred. Useful for incorporating existing whole pages as a portion of another page. This option has no effect if XML output is requested. 
     TdOpt_show-body-only = auto
 	
 	# cat=Tidy - HTML XHTML XML Options; type=boolean ; label=uppercase-attributes : This option specifies if Tidy should output attribute names in upper case. The default is no, which results in lower case attribute names, except for XML input, where the original case is preserved. 
@@ -272,7 +272,7 @@
 // --------------------------------------------------------	
 // @@@@@@@@@@@@@@@@@@@@ Diagnostics Options Reference 
 
-	# cat=Tidy - Diagnostics Options; type=options[0, 1, 2, 3] ; label=accessibility-check : [0 (Tidy Classic), 1 (Priority 1 Checks), 2 (Priority 2 Checks), 3 (Priority 3 Checks)]This option specifies what level of accessibility checking, if any, that Tidy should do. Level 0 is equivalent to Tidy Classic's accessibility checking. For more information on Tidy's accessibility checking, visit the Adaptive Technology Resource Centre at the University of Toronto. 
+	# cat=Tidy - Diagnostics Options; type=options[0,1,2,3] ; label=accessibility-check : [0 (Tidy Classic), 1 (Priority 1 Checks), 2 (Priority 2 Checks), 3 (Priority 3 Checks)]This option specifies what level of accessibility checking, if any, that Tidy should do. Level 0 is equivalent to Tidy Classic's accessibility checking. For more information on Tidy's accessibility checking, visit the Adaptive Technology Resource Centre at the University of Toronto. 
     TdOpt_accessibility-check = 0
 	
 	# cat=Tidy - Diagnostics Options; type=int; label=show-errors : This option specifies the number Tidy uses to determine if further errors should be shown. If set to 0, then no errors are shown. 
@@ -288,7 +288,7 @@
 	# cat=Tidy - Pretty Print Options; type=boolean ; label=break-before-br : This option specifies if Tidy should output a line break before each <BR> element. 
     TdOpt_break-before-br = 0
 	
-	# cat=Tidy - Pretty Print Options; type=options[auto, yes, no] ; label=indent  : This option specifies if Tidy should indent block-level tags. If set to "auto", this option causes Tidy to decide whether or not to indent the content of tags such as TITLE, H1-H6, LI, TD, TD, or P depending on whether or not the content includes a block-level element. You are advised to avoid setting indent to yes as this can expose layout bugs in some browsers. 
+	# cat=Tidy - Pretty Print Options; type=options[auto,yes,no] ; label=indent  : This option specifies if Tidy should indent block-level tags. If set to "auto", this option causes Tidy to decide whether or not to indent the content of tags such as TITLE, H1-H6, LI, TD, TD, or P depending on whether or not the content includes a block-level element. You are advised to avoid setting indent to yes as this can expose layout bugs in some browsers. 
     TdOpt_indent = auto
 	
 	# cat=Tidy - Pretty Print Options; type=boolean ; label=indent-attributes : This option specifies if Tidy should begin each attribute on a new line. 
@@ -303,7 +303,7 @@
 	# cat=Tidy - Pretty Print Options; type=boolean ; label=punctuation-wrap : This option specifies if Tidy should line wrap after some Unicode or Chinese punctuation characters.
     TdOpt_punctuation-wrap = 0
 	
-	# cat=Tidy - Pretty Print Options; type=options[none, alpha] ; label=sort-attributes : This option specifies that tidy should sort attributes within an element using the specified sort algorithm. If set to "alpha", the algorithm is an ascending alphabetic sort. 
+	# cat=Tidy - Pretty Print Options; type=options[none,alpha] ; label=sort-attributes : This option specifies that tidy should sort attributes within an element using the specified sort algorithm. If set to "alpha", the algorithm is an ascending alphabetic sort. 
     TdOpt_sort-attributes = none
 	
 	# cat=Tidy - Pretty Print Options; type=boolean ; label=split : Currently not used. Tidy Classic only.
@@ -342,22 +342,22 @@
 	# cat=Tidy - Character Encoding Options; type=boolean ; label=ascii-chars : Can be used to modify behavior of -c (--clean yes) option. If set to "yes" when using -c, &emdash;, &rdquo;, and other named character entities are downgraded to their closest ascii equivalents. 
     TdOpt_ascii-chars = 0
 	
-	# cat=Tidy - Character Encoding Options; type=options[utf8, ascii, raw, latin0, latin1, iso2022, mac, win1252, ibm858, utf16, utf16le, utf16be, big5, shiftjis] ; label=char-encoding : This option specifies the character encoding Tidy uses for both the input and output. For ascii, Tidy will accept Latin-1 (ISO-8859-1) character values, but will use entities for all characters whose value > 127. For raw, Tidy will output values above 127 without translating them into entities. For latin1, characters above 255 will be written as entities. For utf8, Tidy assumes that both input and output is encoded as UTF-8. You can use iso2022 for files encoded using the ISO-2022 family of encodings e.g. ISO-2022-JP. For mac and win1252, Tidy will accept vendor specific character values, but will use entities for all characters whose value > 127. For unsupported encodings, use an external utility to convert to and from UTF-8. 
+	# cat=Tidy - Character Encoding Options; type=options[utf8,ascii,raw,latin0,latin1,iso2022,mac,win1252,ibm858,utf16,utf16le,utf16be,big5,shiftjis] ; label=char-encoding : This option specifies the character encoding Tidy uses for both the input and output. For ascii, Tidy will accept Latin-1 (ISO-8859-1) character values, but will use entities for all characters whose value > 127. For raw, Tidy will output values above 127 without translating them into entities. For latin1, characters above 255 will be written as entities. For utf8, Tidy assumes that both input and output is encoded as UTF-8. You can use iso2022 for files encoded using the ISO-2022 family of encodings e.g. ISO-2022-JP. For mac and win1252, Tidy will accept vendor specific character values, but will use entities for all characters whose value > 127. For unsupported encodings, use an external utility to convert to and from UTF-8. 
    TdOpt_char-encoding = ascii
    
-	# cat=Tidy - Character Encoding Options; type=options[utf8, ascii, raw, latin0, latin1, iso2022, mac, win1252, ibm858, utf16, utf16le, utf16be, big5, shiftjis] ; label=input-encoding : This option specifies the character encoding Tidy uses for the input. See char-encoding for more info.
+	# cat=Tidy - Character Encoding Options; type=options[utf8,ascii,raw,latin0,latin1,iso2022,mac,win1252,ibm858,utf16,utf16le,utf16be,big5,shiftjis] ; label=input-encoding : This option specifies the character encoding Tidy uses for the input. See char-encoding for more info.
    TdOpt_input-encoding = latin1
 	
 	# cat=Tidy - Character Encoding Options; type=text ; label=language : Currently not used, but this option specifies the language Tidy uses (for instance "en"). 
     TdOpt_language = 0
 	
-	# cat=Tidy - Character Encoding Options; type=options[LF, CRLF, CR] ; label=newline : The default is appropriate to the current platform: CRLF on PC-DOS, MS-Windows and OS/2, CR on Classic Mac OS, and LF everywhere else (Unix and Linux). 
+	# cat=Tidy - Character Encoding Options; type=options[LF,CRLF,CR] ; label=newline : The default is appropriate to the current platform: CRLF on PC-DOS, MS-Windows and OS/2, CR on Classic Mac OS, and LF everywhere else (Unix and Linux). 
     TdOpt_newline = LF
 	
-	# cat=Tidy - Character Encoding Options; type=options[auto, yes, no] ; label=output-bom : This option specifies if Tidy should write a Unicode Byte Order Mark character (BOM; also known as Zero Width No-Break Space; has value of U+FEFF) to the beginning of the output; only for UTF-8 and UTF-16 output encodings. If set to "auto", this option causes Tidy to write a BOM to the output only if a BOM was present at the beginning of the input. A BOM is always written for XML/XHTML output using UTF-16 output encodings. 
+	# cat=Tidy - Character Encoding Options; type=options[auto,yes,no] ; label=output-bom : This option specifies if Tidy should write a Unicode Byte Order Mark character (BOM; also known as Zero Width No-Break Space; has value of U+FEFF) to the beginning of the output; only for UTF-8 and UTF-16 output encodings. If set to "auto", this option causes Tidy to write a BOM to the output only if a BOM was present at the beginning of the input. A BOM is always written for XML/XHTML output using UTF-16 output encodings. 
     TdOpt_output-bom = auto
 	
-	# cat=Tidy - Character Encoding Options; type=options[utf8, ascii, raw, latin0, latin1, iso2022, mac, win1252, ibm858, utf16, utf16le, utf16be, big5, shiftjis] ; label=output-encoding : This option specifies the character encoding Tidy uses for the output. See char-encoding for more info. May only be different from input-encoding for Latin encodings (ascii, latin0, latin1, mac, win1252, ibm858).
+	# cat=Tidy - Character Encoding Options; type=options[utf8,ascii,raw,latin0,latin1,iso2022,mac,win1252,ibm858,utf16,utf16le,utf16be,big5,shiftjis] ; label=output-encoding : This option specifies the character encoding Tidy uses for the output. See char-encoding for more info. May only be different from input-encoding for Latin encodings (ascii, latin0, latin1, mac, win1252, ibm858).
    TdOpt_output-encoding = ascii
    
 // --------------------------------------------------------	
