@@ -1,0 +1,27 @@
+   //http://www.wiki-oblady.com/index.php/Interface_de_configuration_d%27une_extension_dans_l%27Extension_manager
+   
+    //########### General Mode
+   # cat=General; type=options[htmlawed,tidy,php5tidy,typo3_tidy] ; label= Mode : 	*	htmlawed : see http://code.google.com/p/htmlawed/ 	*	tidy : auto mode for tidy (use php5 tidy if available) 	*	php5tidy : http://php.net/manual/en/ref.tidy.php 	 *	typo3_tidy : Typo3 original tidy function (use file cache)
+   mode = htmlawed
+   
+    # cat=General; type=boolean ; label= Debug
+    debug = 0
+
+//http://www.bioinformatics.org/phplabware/internal_utilities/htmLawed/htmLawed_README.htm   
+   //########### htmlawed specifics
+      # cat=htmlawed; type=options[no_change,relative,absolute] ; label= absolute/relative URL conversion
+   abs_url = no_change
+   
+   # cat=htmlawed; type=boolean ; label= mark original & chars
+   and_mark = 0
+   
+   # cat=htmlawed; type=options[no_change, 0 - don't consider CDATA sections as markup and proceed as if plain text  ^",1 - remove, 2 - allow but neutralize any < > and & inside by converting them to named entities, 3 - allow  *] ; label= allow CDATA sections
+   cdata = no_change
+
+//http://tidy.sourceforge.net/docs/quickref.html#hide-comments
+   //########### Tidy specifics
+      # cat=Tidy; type=options[raw, utf8, ascii, latin0, latin1, iso2022, mac, win1252, ibm858, utf16, utf16le, utf16be, big5, shiftjis] ; label= The encoding parameter sets the encoding for input/output documents
+   encoding = raw
+  
+      # cat=Tidy; type=boolean ; label= This option specifies if Tidy should add the XML declaration when outputting XML or XHTML. Note that if the input already includes an <?xml ... ?> declaration then this option will be ignored. If the encoding for the output is different from "ascii", one of the utf encodings or "raw", the declaration is always added as required by the XML standard. 
+   add-xml-decl = 0 
