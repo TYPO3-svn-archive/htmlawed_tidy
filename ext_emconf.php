@@ -3,7 +3,7 @@
 ########################################################################
 # Extension Manager/Repository config file for ext "htmlawed_tidy".
 #
-# Auto generated 17-11-2010 16:41
+# Auto generated 17-11-2010 16:54
 #
 # Manual updates:
 # Only the data in the array - everything else is removed by next
@@ -11,19 +11,11 @@
 ########################################################################
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'htmLawed or Tidy html Cleanup',
-	'description' => 'Can customize the Html tidy way : 
-
-* htmlawed : see http://code.google.com/p/htmlawed/ 
-* tidy : auto mode for tidy (use php5 tidy if available) 
-* php5tidy : http://php.net/manual/en/ref.tidy.php 
-* typo3_tidy : Typo3 original tidy function (use file cache)
-
-
-more infos on http://forge.typo3.org/projects/show/extension-htmlawed_tidy',
+	'title' => 'Tidy or HtmLawed easy configurator',
+	'description' => 'Configurator for Tidy or HtmLawed. Presets defined for easy configuration. Can use PHP5+ tidy or Typo3 integrated or HtmLawed. See http://forge.typo3.org/projects/show/extension-htmlawed_tidy for info.',
 	'category' => 'fe',
 	'shy' => 0,
-	'version' => '0.1.1',
+	'version' => '0.1.2',
 	'dependencies' => '',
 	'conflicts' => '0,1,2',
 	'priority' => '',
