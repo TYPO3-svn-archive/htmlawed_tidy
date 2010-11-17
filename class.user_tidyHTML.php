@@ -5,7 +5,7 @@
 *
 *  (c) 2010 Nicolas Liaudat (nliaudat [at]pompiers-chatel.ch)
 *  All rights reserved
-*  Based on tstidy extension from Mads Brunn
+*  Base inspired from "tstidy" extension from Mads Brunn
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
 *  free software; you can redistribute it and/or modify
@@ -41,6 +41,28 @@ class user_tidyHTML extends tslib_fe {
     }
     
     function tidy($content, $confArr) {
+	
+	//parse the configuration  and dispatch it: 
+	//$generalConf = array ();
+	$tidyConf = array (); 
+	$htmlawedConf = array ();
+		
+		foreach ($confArr as $key => $val) {
+			
+			//if(substr($key, 0, 6) == 'GeOpt_'){
+			//	$generalConf[substr($key,2)] = $val;
+			//}
+			
+			if(substr($key, 0, 6) == 'TdOpt_'){
+				$tidyConf[substr($key,6)] = $val;
+			}
+			
+			if(substr($key, 0, 6) == 'HlOpt_'){
+				$htmlawedConf[substr($key,6)] = $val;
+			}
+			
+		}
+	
     
 	$debug = $confArr['debug'];    
     	$mode = $confArr['mode'];  
@@ -57,37 +79,54 @@ class user_tidyHTML extends tslib_fe {
 				
 				$encoding = $confArr['encoding'];
 				
-				//config params : 
-				//$add-xml-decl = $confArr['add-xml-decl']; //variable cannot contains '-' ??
-				
-				//to test : extract($confArr); Converting an array to individual variables
-				
-				$config = array('indent' => TRUE,
+
+/*				
+				$tidyConf = array('indent' => TRUE,
 						'hide-comments' => TRUE,
 						'clean' => TRUE,
-                				'output-xhtml' => TRUE,
-					        'input-xml'     => true,
-            					'wrap'         => '1000');
+                		'output-xhtml' => TRUE,
+					    'input-xml'     => true,
+            			'wrap'         => '1000');
+*/
 
-                		$tidy = tidy_parse_string($oldContent , $config, $encoding);
-                		$tidy->cleanRepair();
-				//tidy_clean_repair($tidy);
+				if($confArr['tidy_preset'] != 'none'){ //load preset configuration
+					//$tidyConf = parse_ini_file(t3lib_extMgm::extPath ("htmlawed_tidy")."config/" .$confArr['tidy_preset']);
+					
+					//tidy accept file as config
+					$tidyConf = t3lib_extMgm::extPath ("htmlawed_tidy")."config/" .$confArr['tidy_preset'];
+				}
+
+                $tidy = tidy_parse_string($oldContent , $tidyConf, $encoding);
+                $tidy->cleanRepair();
+
 				$content = $tidy;
 				unset($tidy);
+				
+				//$content = $content .'<!-- DEBUG tidyConf' . var_dump($tidyConf) .' -->';
 
 		}elseif($mode == 'tidy' && phpversion() < '5.0.0' || $mode == 'typo3_tidy'){ 
 			//##############
 			// PHP lower than 5.0 - original Typo3 way
-			//process with original function from tslib_fe
+			
 				if($debug == true) {$time_start = microtime(true);}
-				$content = parent::tidyHTML($oldContent); 
+				$content = parent::tidyHTML($oldContent); //process with original function from tslib_fe
 				
 		}elseif($mode == 'htmlawed'){
 		
 				require_once (t3lib_extMgm::extPath ("htmlawed_tidy")."pi1/htmLawed.php");
-				$config = array('comment'=>1, 'cdata'=>1); 
+/*				
+				$htmlawedConf = array('comment'=>1,
+								'cdata'=>1); 
+*/
+				if($confArr['htmlawed_preset'] != 'none'){ //load preset configuration
+					$htmlawedConf = parse_ini_file(t3lib_extMgm::extPath ("htmlawed_tidy")."config/" .$confArr['htmlawed_preset']);	
+				}
+				
+
 				if($debug == true) {$time_start = microtime(true);}
-				$content = htmLawed($oldContent, $config);
+				$content = htmLawed($oldContent, $htmlawedConf);
+				
+				//$content = $content .'<!-- DEBUG htmlawedConf' . var_dump($htmlawedConf) .' -->';
 				
 		}else{
 			$content .= "<!-- ERROR 'htmLawed_tidy' : $mode mode not correct : choose htmlawed, tidy (php5 if available), php5tidy, typo3_tidy -->";
