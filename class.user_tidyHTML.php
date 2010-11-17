@@ -90,8 +90,6 @@ class user_tidyHTML extends tslib_fe {
 */
 
 				if($confArr['tidy_preset'] != 'none'){ //load preset configuration
-					//$tidyConf = parse_ini_file(t3lib_extMgm::extPath ("htmlawed_tidy")."config/" .$confArr['tidy_preset']);
-					
 					//tidy accept file as config
 					$tidyConf = t3lib_extMgm::extPath ("htmlawed_tidy")."config/" .$confArr['tidy_preset'];
 				}
