@@ -20,12 +20,12 @@ $EM_CONF[$_EXTKEY] = array(
 * typo3_tidy : Typo3 original tidy function (use file cache)
 
 
-(htmLawed : single 47 kb file without dependencies)',
+more infos on http://forge.typo3.org/projects/show/extension-htmlawed_tidy',
 	'category' => 'fe',
 	'shy' => 0,
 	'version' => '0.0.8',
 	'dependencies' => '',
-	'conflicts' => '',
+	'conflicts' => 'tstidy,abcsstidy,stfl_tidystdwrap',
 	'priority' => '',
 	'loadOrder' => '',
 	'module' => '',
@@ -43,7 +43,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'constraints' => array(
 		'depends' => array(
 		),
-		'conflicts' => array(
+		'conflicts' => array('tstidy','abcsstidy','stfl_tidystdwrap'
 		),
 		'suggests' => array(
 		),
