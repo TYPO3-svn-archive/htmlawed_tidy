@@ -1,27 +1,115 @@
    //http://www.wiki-oblady.com/index.php/Interface_de_configuration_d%27une_extension_dans_l%27Extension_manager
 //#######################################   
-//########### General Mode
+//########### Main Processing Engine
 //#######################################  
 
-   # cat=General Mode; type=options[htmlawed,tidy,php5tidy,typo3_tidy] ; label= Mode : 	*	htmlawed : see http://code.google.com/p/htmlawed/ 	*	tidy : auto mode for tidy (use php5 tidy if available) 	*	php5tidy : http://php.net/manual/en/ref.tidy.php 	 *	typo3_tidy : Typo3 original tidy function (use file cache)
-   mode = htmlawed
+   # cat=Main Processing Engine; type=options[htmlawed,tidy,php5tidy,typo3_tidy] ; label= Mode : 	*	htmlawed : see http://code.google.com/p/htmlawed/ 	*	tidy : auto mode for tidy (use php5 tidy if available) 	*	php5tidy : http://php.net/manual/en/ref.tidy.php 	 *	typo3_tidy : Typo3 original tidy function (use file cache)
+   mode = tidy
    
-    # cat=General Mode; type=boolean ; label= Debug :
+    # cat=Main Processing Engine; type=boolean ; label= Debug : Enable debuging (add html comment to the end of document)
     debug = 0
+	
 //#######################################  
 //http://www.bioinformatics.org/phplabware/internal_utilities/htmLawed/htmLawed_README.htm   
-   //########### htmlawed specifics
+//########### htmlawed specifics
 //#######################################  
 
-      # cat=htmLawed; type=options[no_change,relative,absolute] ; label=abs_url : absolute/relative URL conversion
+   # cat=htmLawed - Options; type=options[none, default_preset.cfg, xml_preset.cfg] ; label=load-preset : You can load configuration presets for Htmlawed (see EXT_PATH:/config/). THIS WILL OVERWRITE ALL OTHER PARAMETERS
+   load-preset = none
+
+   # cat=htmLawed - Options; type=options[no_change,relative,absolute] ; label=abs_url : absolute/relative URL conversion
    abs_url = no_change
    
-   # cat=htmLawed; type=boolean ; label=and_mark : mark original & chars
-   and_mark = 0
+   # cat=htmLawed - Options; type=boolean ; label=and_mark : Valid character entities take the form &*; where * is #x followed by a hexadecimal number (hexadecimal numeric entity; like &#xA0; for non-breaking space), or alphanumeric like gt (external or named entity; like &nbsp; for non-breaking space), or # followed by a number (decimal numeric entity; like &#160; for non-breaking space). Character entities referring to the soft-hyphen character (the &shy; or \xad character; hexadecimal code-point ad [decimal 173]) in URL-accepting attribute values are always replaced with spaces   and_mark = 0
    
-   # cat=htmLawed; type=options[no_change, 0, 1, 2, 3] ; label= allow CDATA sections [0 - don't consider CDATA sections as markup and proceed as if plain text  ^",1 - remove, 2 - allow but neutralize any < > and & inside by converting them to named entities, 3 - allow  *]
+   # cat=htmLawed - Options; type=options[no_change, 0, 1, 2, 3] ; label=cdata : allow CDATA sections [0 - don't consider CDATA sections as markup and proceed as if plain text  ^",1 - remove, 2 - allow but neutralize any < > and & inside by converting them to named entities, 3 - allow  *]
    cdata = no_change
-
+   
+   # cat=htmLawed - Options; type=text ; label=anti_link_spam : [0 = no measure taken] Example : array("/./", "/://\W*(?!(abc\.com|xyz\.org))/")
+   anti_link_spam = 0
+   
+   # cat=htmLawed - Options; type=text ; label=anti_mail_spam : [0 = no measure taken] "word" - @ in mail address in href attribute value is replaced with specified word
+   anti_mail_spam = 0
+   
+   # cat=htmLawed - Options; type=boolean ; label=balance : Balance tags for well-formedness and proper nesting
+   balance = 1
+   
+   # cat=htmLawed - Options; type=boolean ; label=balance : Balance tags for well-formedness and proper nesting
+   balance = 1
+   
+   # cat=htmLawed - Options; type=text ; label=base_url : Base URL value that needs to be set if ["abs_url"] is not 0
+   base_url = 0
+   
+   # cat=htmLawed - Options; type=options[0, 1, 2, 3]; label=cdata : Handling of CDATA sections :   0 - don't consider CDATA sections as markup and proceed as if plain text  ^"  , 1 - remove ,  2 - allow, but neutralize any <, >, and & inside by converting them to named entities,  3 - allow  *
+   cdata = 3 
+   
+   # cat=htmLawed - Options; type=options[0, 1, 2]; label=clean_ms_char : Replace discouraged characters introduced by Microsoft Word, etc   0 - no  *,  1 - yes,  2 - yes, but replace special single & double quotes with ordinary ones
+   clean_ms_char = 0
+   
+   # cat=htmLawed - Options; type=options[0, 1, 2, 3]; label=comment :   0 - don't consider comments as markup and proceed as if plain text  ^",  1 - remove,  2 - allow, but neutralize any <, >, and & inside by converting to named entities,  3 - allow  *
+   comment = 3 
+   
+   # cat=htmLawed - Options; type=boolean ; label=css_expression : Allow dynamic CSS expression by not removing the expression from CSS property values in style attributes [ 0 = remove , 1 =allow]
+   css_expression = 0
+   
+   # cat=htmLawed - Options; type=text ; label=deny_attribute : Denied HTML attributes [0 = none] string - dictated by values in string on* (like onfocus) attributes not allowed - "
+   deny_attribute = 0
+   
+   # cat=htmLawed - Options; type=text ; label=elements : Allowed HTML elements : * -center -dir -font -isindex -menu -s -strike -u -  ~  applet, embed, iframe, object, script not allowed - "
+   elements = *
+   
+   # cat=htmLawed - Options; type=options[0, 1, 2, 3]; label=hexdec_entity : Allow hexadecimal numeric entities and do not convert to the more widely accepted decimal ones, or convert decimal to hexadecimal ones : [0 = no, 1 = yes, 2 = convert decimal to hexadecimal ones]
+   hexdec_entity = 1
+   
+   # cat=htmLawed - Options; type=text; label=hook : Name of an optional hook function to alter the input string, $config or $spec before htmLawed starts its main work (kses_hook  ^)
+   hook = 0 
+   
+   # cat=htmLawed - Options; type=text; label=hook_tag : Name of an optional hook function to alter tag content finalized by htmLawed
+   hook_tag= 0 
+   
+   # cat=htmLawed - Options; type=options[0, 1, 2, 3, 4, 5, 6]; label=keep_bad : Neutralize bad tags by converting < and > to entities, or remove them : [0 - remove, 1 - neutralize both tags and element content ,2 - remove tags but neutralize element content, 3 and 4 - like 1 and 2 but remove if text (pcdata) is invalid in parent element, 5 and 6 * -  like 3 and 4 but line-breaks, tabs and spaces are left]
+   keep_bad = 6
+   
+   # cat=htmLawed - Options; type=boolean; label=lc_std_val : For XHTML compliance, predefined, standard attribute values, like get for the method attribute of form, must be lowercased
+   lc_std_val = 1
+   
+   # cat=htmLawed - Options; type=options[0, 1, 2]; label=make_tag_strict : Transform/remove these non-strict XHTML elements, even if they are allowed by the admin: applet center dir embed font isindex menu s strike u : [0 - no, 1 - yes, but leave applet, embed and isindex elements that currently can't be transformed,  2 - yes, removing applet, embed and isindex elements and their contents (nested elements remain)]
+   make_tag_strict = 1
+   
+   # cat=htmLawed - Options; type=boolean; label=named_entity : Allow non-universal named HTML entities, or convert to numeric ones : [0 - convert, 1 - allow  *]
+   named_entity = 1
+   
+   # cat=htmLawed - Options; type=options[0, 1, 2]; label=no_deprecated_attr : Allow deprecated attributes or transform them [  0 - allow,  1 - transform, but name attributes for a and map are retained ,  2 - transform]
+   no_deprecated_attr = 1
+   
+   # cat=htmLawed - Options; type=text; label=parent : Name of the parent element, possibly imagined, that will hold the input
+   parent = 
+   
+   # cat=htmLawed - Options; type=boolean; label=safe : Magic parameter to make input the most secure against XSS without needing to specify other relevant parameters
+   safe = 0
+   
+   # cat=htmLawed - Options; type=text; label=schemes : Array of attribute-specific, comma-separated, lower-cased list of schemes (protocols) allowed in attributes accepting URLs (or ! to deny any URL); * covers all unspecified attributes : [E.g., href: mailto, http, https; onclick: javascript; src: http, https.]
+   schemes = 
+   
+   # cat=htmLawed - Options; type=text; label=show_setting : Name of a PHP variable to assign the finalized $config and $spec values
+   show_setting = 
+   
+   # cat=htmLawed - Options; type=boolean; label=style_pass : htmLawed will let through any style value]
+   style_pass = 0
+   
+   # cat=htmLawed - Options; type=text; label=tidy : [ -1 = compact,  0 = no  *,  1 or string - beautify (custom format specified by string)]
+   tidy = 0
+   
+   # cat=htmLawed - Options; type=boolean; label=unique_ids : id attribute value checks, remove duplicate and/or invalid ones 
+   unique_ids = 0
+   
+   # cat=htmLawed - Options; type=boolean; label=valid_xhtml : Magic parameter to make input the most valid XHTML without needing to specify other relevant
+   valid_xhtml = 0
+   
+   # cat=htmLawed - Options; type=options[0, 1, 2]; label=xml_lang : Auto-adding xml:lang attribute [0 - no  *,  1 - add if lang attribute is present,  2 - add if lang attribute is present, and remove lang]
+   xml:lang = 0
+   
+   
 //#######################################  
 //http://tidy.sourceforge.net/docs/quickref.html#hide-comments
 //########### Tidy specifics
