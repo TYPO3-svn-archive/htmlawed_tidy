@@ -3,8 +3,8 @@
 //########### Main Processing Engine
 //#######################################  
 
-   # cat=Main Processing Engine; type=options[htmlawed,tidy,php5tidy,typo3_tidy] ; label= Mode : 	*	htmlawed : see http://code.google.com/p/htmlawed/ 	*	tidy : auto mode for tidy (use php5 tidy if available) 	*	php5tidy : http://php.net/manual/en/ref.tidy.php 	 *	typo3_tidy : Typo3 original tidy function (use file cache)
-   mode = tidy
+   # cat=Main Processing Engine; type=options[DOMDocument,htmlawed,tidy,php5tidy,typo3_tidy] ; label= Mode : 	*	htmlawed : see http://code.google.com/p/htmlawed/ 	*	tidy : auto mode for tidy (use php5 tidy if available) 	*	php5tidy : http://php.net/manual/en/ref.tidy.php 	 *	typo3_tidy : Typo3 original tidy function (use file cache)
+   mode = DOMDocument
    
     # cat=Main Processing Engine; type=boolean ; label= Debug : Enable debuging (add html comment to the end of document)
     debug = 0

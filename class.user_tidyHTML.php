@@ -109,6 +109,17 @@ class user_tidyHTML extends tslib_fe {
 				if($debug == true) {$time_start = microtime(true);}
 				$content = parent::tidyHTML($oldContent); //process with original function from tslib_fe
 				
+		}elseif($mode == 'DOMDocument'){
+		
+				if($debug == true) {$time_start = microtime(true);}
+				
+				// load our document into a DOM object
+				$dom = @DOMDocument::loadHTML($oldContent);
+				// we want nice output
+				$dom->formatOutput = true;
+				$content = $dom->saveHTML());
+				unset($dom);
+		
 		}elseif($mode == 'htmlawed'){
 		
 				require_once (t3lib_extMgm::extPath ("htmlawed_tidy")."pi1/htmLawed.php");
