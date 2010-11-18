@@ -117,7 +117,7 @@ class user_tidyHTML extends tslib_fe {
 				$dom = @DOMDocument::loadHTML($oldContent);
 				// we want nice output
 				$dom->formatOutput = true;
-				$content = $dom->saveHTML());
+				$content = $dom->saveHTML();
 				unset($dom);
 		
 		}elseif($mode == 'htmlawed'){
